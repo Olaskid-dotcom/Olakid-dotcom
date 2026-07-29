@@ -783,7 +783,10 @@ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
   function nextTrack(){ playTrack((currentIndex + 1) % tracks.length); }
   function prevTrack(){ playTrack((currentIndex - 1 + tracks.length) % tracks.length); }
-
+function shuffleTrack() {
+  const randomIndex = Math.floor(Math.random() * tracks.length);
+  playTrack(randomIndex);
+}
   function playFirstByArtist(artistName){
     const i = tracks.findIndex(t => t.artist === artistName);
     if(i !== -1) playTrack(i);

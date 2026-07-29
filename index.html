@@ -711,8 +711,9 @@ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
     document.getElementById('nowArt').style.background = t.grad;
     document.getElementById('discTrack').textContent = t.title;
     document.getElementById('discArtist').textContent = t.artist;
-    renderTracks();
-    updateMediaSessionMetadata(t);
+document.getElementById('lyrics').textContent = t.lyrics || "No lyrics available.";
+renderTracks();
+updateMediaSessionMetadata(t);
   }
 
   /* ---------- GOOGLE AD MANAGER (IMA SDK) — AUDIO PRE-ROLL ----------

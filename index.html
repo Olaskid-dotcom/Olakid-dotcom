@@ -687,35 +687,41 @@ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   }
 
   function renderTracks(){
-    const grid = document.getElementById('trackGrid');
-    const list = currentGenre === 'All' ? tracks : tracks.filter(t => t.genre === currentGenre);
-    grid.innerHTML = list.map((t) => {
-      const realIndex = tracks.indexOf(t);
-      const isActive = realIndex === currentIndex;
-      return `
-      <div class="track-card ${isActive ? 'active':''}" onclick="playTrack(${realIndex})">
+  const grid = document.getElementById('trackGrid');
+  const list = currentGenre === 'All' ? tracks : tracks.filter(t => t.genre === currentGenre);
+
+  grid.innerHTML = list.map((t) => {
+    const realIndex = tracks.indexOf(t);
+    const isActive = realIndex === currentIndex;
+
+    return `
+      <div class="track-card ${isActive ? 'active' : ''}" onclick="playTrack(${realIndex})">
         <div class="art" style="background:${t.grad}">
           <span class="track-genre">${t.genre}</span>
-          <button class="art-play ${isActive ? 'pause':''}" aria-label="Play">
+          <button class="art-play ${isActive ? 'pause' : ''}" aria-label="Play">
             <svg viewBox="0 0 24 24">${isActive && !audio.paused ? pauseIconSvg() : playIconSvg()}</svg>
           </button>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-  <div class="track-title">${t.title}</div>
-  <button onclick="event.stopPropagation();toggleFavorite(${realIndex})"
-    style="background:none;border:none;font-size:20px;cursor:pointer;color:#FF6B35;">
-    ${favorites.includes(realIndex) ? '❤️' : '🤍'}
-  </button>
-</div>
-<div class="track-artist">${t.artist}</div>
 
-<a href="${t.src}" download
-   onclick="event.stopPropagation()"
-   style="display:inline-block;margin-top:8px;padding:6px 12px;background:#FF6B35;color:white;text-decoration:none;border-radius:6px;font-size:12px;">
-   📥 Download
-</a>
-    }).join('');
-  }
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div class="track-title">${t.title}</div>
+          <button onclick="event.stopPropagation();toggleFavorite(${realIndex})"
+            style="background:none;border:none;font-size:20px;cursor:pointer;color:#FF6B35;">
+            ${favorites.includes(realIndex) ? '❤️' : '🤍'}
+          </button>
+        </div>
+
+        <div class="track-artist">${t.artist}</div>
+
+        <a href="${t.src}" download
+          onclick="event.stopPropagation()"
+          style="display:inline-block;margin-top:8px;padding:6px 12px;background:#FF6B35;color:white;text-decoration:none;border-radius:6px;font-size:12px;">
+          📥 Download
+        </a>
+      </div>
+    `;
+  }).join('');
+}
 
   function loadTrack(i){
     currentIndex = i;

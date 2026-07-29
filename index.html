@@ -677,9 +677,14 @@ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
             <svg viewBox="0 0 24 24">${isActive && !audio.paused ? pauseIconSvg() : playIconSvg()}</svg>
           </button>
         </div>
-        <div class="track-title">${t.title}</div>
-        <div class="track-artist">${t.artist}</div>
-      </div>`;
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+  <div class="track-title">${t.title}</div>
+  <button onclick="event.stopPropagation();toggleFavorite(${realIndex})"
+    style="background:none;border:none;font-size:20px;cursor:pointer;color:#FF6B35;">
+    ${favorites.includes(realIndex) ? '❤️' : '🤍'}
+  </button>
+</div>
+<div class="track-artist">${t.artist}</div>
     }).join('');
   }
 

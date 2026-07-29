@@ -645,7 +645,7 @@
   const audio = document.getElementById('audio');
   let currentIndex = 0;
   let currentGenre = 'All';
-
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   function playIconSvg(){ return '<path d="M8 5v14l11-7z"/>'; }
   function pauseIconSvg(){ return '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>'; }
 

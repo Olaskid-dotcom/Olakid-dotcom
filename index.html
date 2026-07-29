@@ -953,6 +953,16 @@ searchInput.addEventListener("input", function () {
   const randomIndex = Math.floor(Math.random() * tracks.length);
   playTrack(randomIndex);
      }
+     function toggleFavorite(index) {
+  if (favorites.includes(index)) {
+    favorites = favorites.filter(i => i !== index);
+  } else {
+    favorites.push(index);
+  }
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  renderTracks();
+     }
   renderPills();
   renderTracks();
 </script>

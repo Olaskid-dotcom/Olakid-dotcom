@@ -917,6 +917,10 @@ searchInput.addEventListener("input", function () {
     }
   });
 });
+     function shuffleTracks() {
+  const randomIndex = Math.floor(Math.random() * tracks.length);
+  playTrack(randomIndex);
+     }
   renderPills();
   renderTracks();
 </script>

@@ -888,7 +888,22 @@
 
   function setVolume(v){ audio.volume = v; }
   audio.volume = 0.8;
+const searchInput = document.getElementById("searchInput");
 
+searchInput.addEventListener("input", function () {
+  const text = this.value.toLowerCase();
+
+  document.querySelectorAll(".track-card").forEach(card => {
+    const title = card.querySelector(".track-title").textContent.toLowerCase();
+    const artist = card.querySelector(".track-artist").textContent.toLowerCase();
+
+    if (title.includes(text) || artist.includes(text)) {
+      card.style.display = "";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
   renderPills();
   renderTracks();
 </script>

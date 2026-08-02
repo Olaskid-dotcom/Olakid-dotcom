@@ -669,7 +669,11 @@
             <svg viewBox="0 0 24 24">${isActive && !audio.paused ? pauseIconSvg() : playIconSvg()}</svg>
           </button>
         </div>
-        <div class="track-title">${t.title}</div>
+        <div class="track-title">
+${t.title === "Tomorrow Go Better"
+? `<a href="lyrics-tomorrow-go-better.html" style="color:inherit;text-decoration:none;">${t.title}</a>`
+: t.title}
+</div>
 <div class="track-artist">${t.artist}</div>
       </div>`;
     }).join('');

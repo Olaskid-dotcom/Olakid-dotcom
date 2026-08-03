@@ -675,6 +675,16 @@ ${t.title === "Tomorrow Go Better"
 : t.title}
 </div>
 <div class="track-artist">${t.artist}</div>
+
+<div class="track-actions">
+  <button onclick="event.stopPropagation(); toggleFavorite(${realIndex})">
+    ❤️
+  </button>
+
+  <a href="${t.src}" download onclick="event.stopPropagation()">
+    ⬇️ Download
+  </a>
+</div>
       </div>`;
     }).join('');
   }

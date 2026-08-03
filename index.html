@@ -654,7 +654,7 @@
     document.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.dataset.genre === g));
     renderTracks();
   }
-
+const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
   function renderTracks(){
     const grid = document.getElementById('trackGrid');
     const list = currentGenre === 'All' ? tracks : tracks.filter(t => t.genre === currentGenre);
@@ -753,7 +753,6 @@ ${t.title === "Tomorrow Go Better"
     audio.play();
     document.body.classList.add('has-played');
   }
-const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
 function toggleFavorite(index) {
   const pos = favorites.indexOf(index);

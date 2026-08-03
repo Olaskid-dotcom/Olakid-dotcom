@@ -678,8 +678,8 @@ ${t.title === "Tomorrow Go Better"
 
 <div class="track-actions">
   <button onclick="event.stopPropagation(); toggleFavorite(${realIndex})">
-    ❤️
-  </button>
+  ${favorites.includes(realIndex) ? "❤️" : "🤍"}
+</button>
 
   <a href="${t.src}" download onclick="event.stopPropagation()">
     ⬇️ Download
@@ -752,7 +752,20 @@ ${t.title === "Tomorrow Go Better"
     audio.play();
     document.body.classList.add('has-played');
   }
+const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
+function toggleFavorite(index) {
+  const pos = favorites.indexOf(index);
+
+  if (pos === -1) {
+    favorites.push(index);
+  } else {
+    favorites.splice(pos, 1);
+  }
+
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  renderTracks();
+}
   function playTrack(i){
     if(typeof google === 'undefined' || !google.ima){
       // IMA SDK didn't load (ad-blocker, offline, etc.) — fail open, just play the song

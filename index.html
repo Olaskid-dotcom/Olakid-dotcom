@@ -681,9 +681,10 @@ ${t.title === "Tomorrow Go Better"
   ${favorites.includes(realIndex) ? "❤️" : "🤍"}
 </button>
 
-  <a href="${t.src}" download onclick="event.stopPropagation()">
-    ⬇️ Download
-  </a>
+  <a href="${t.src}" download="${t.title}.mp3"
+   onclick="event.stopPropagation()">
+   ⬇️ Download
+</a>
 </div>
       </div>`;
     }).join('');
